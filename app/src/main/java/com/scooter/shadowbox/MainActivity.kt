@@ -2,8 +2,10 @@ package com.scooter.shadowbox
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.drawerlayout.widget.DrawerLayout
 import com.scooter.shadowbox.databinding.ActivityMainBinding
 import com.google.firebase.*
 import com.google.firebase.auth.FirebaseAuth
@@ -13,6 +15,8 @@ import com.scooter.shadowbox.auth.login.LoginActivity
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    lateinit var drawerLayout: DrawerLayout
+    lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     // Firebase Auth
     private lateinit var auth: FirebaseAuth
@@ -23,11 +27,26 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+//        setSupportActionBar(binding.toolbar)
+
+        // Drawer Stuff
+        drawerLayout = binding.drawerLayout
+        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
+
+        drawerLayout.addDrawerListener(actionBarDrawerToggle)
+        actionBarDrawerToggle.syncState()
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         auth = Firebase.auth
 
-        setSupportActionBar(binding.toolbar)
-
         authCheck()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            true
+        } else super.onOptionsItemSelected(item)
     }
 
     private fun authCheck() {
@@ -42,6 +61,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun main() {
-
+        null
     }
 }

@@ -57,4 +57,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:34.10.0"))
     implementation("com.google.firebase:firebase-analytics-ktx:22.5.0")
     implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
+
+    // Material 3.0
+    implementation("com.google.android.material:material:1.13.0")
 }

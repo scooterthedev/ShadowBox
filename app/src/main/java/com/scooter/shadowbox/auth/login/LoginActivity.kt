@@ -13,7 +13,9 @@ import com.scooter.shadowbox.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
-    val provider = OAuthProvider.newBuilder("github.com")
+    private val provider = OAuthProvider.newBuilder("github.com").apply {
+        scopes = listOf("user:email")
+    }
 
     private lateinit var binding: ActivityLoginBinding
 
@@ -68,8 +70,26 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun githubLogin() {
-        binding.githubLogin.setOnClickListener {
-
+        val pendingResultTask = auth.pendingAuthResult
+        if (pendingResultTask != null) {
+            pendingResultTask
+                .addOnSuccessListener {
+                    reload()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(baseContext, "Failed to Login via Github", Toast.LENGTH_SHORT).show()
+                }
+            } else {
+            binding.githubLogin.setOnClickListener {
+                auth.startActivityForSignInWithProvider(this, provider.build())
+                    .addOnSuccessListener { authResult ->
+                        reload()
+                    }
+                    .addOnFailureListener { e ->
+                        Toast.makeText(baseContext, "Failed to login via Github: ${e.message}",
+                            Toast.LENGTH_SHORT).show()
+                    }
+            }
         }
     }
 

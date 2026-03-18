@@ -12,7 +12,6 @@ import com.scooter.shadowbox.auth.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
     // Firebase Auth
@@ -28,17 +27,21 @@ class MainActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbar)
 
-        auth_check()
+        authCheck()
     }
 
-    private fun auth_check() {
+    private fun authCheck() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
-
+            main()
         } else {
-            val int_login = Intent(this, LoginActivity::class.java)
-            startActivity(int_login)
+            val intLogin = Intent(this, LoginActivity::class.java)
+            startActivity(intLogin)
             finish()
         }
+    }
+
+    private fun main() {
+
     }
 }

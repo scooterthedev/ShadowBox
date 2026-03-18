@@ -55,4 +55,6 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="sign_in_with_github">Sign In with Github</string>
+    <string name="welcome_to_shadowbox">Welcome To ShadowBox</string>
 </resources>

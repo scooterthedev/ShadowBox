@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShadowBox">
         <activity
-            android:name=".auth.ui.login.LoginActivity"
+            android:name=".auth.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
         <activity

@@ -44,7 +44,6 @@ android {
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
-    implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
@@ -70,7 +69,8 @@ dependencies {
     implementation("com.google.firebase:firebase-auth-ktx:23.2.1")
 
     // Material 3.0
-    implementation("com.google.android.material:material:1.13.0")
+    implementation(libs.material)
+    implementation(libs.androidx.material3)
     implementation("androidx.navigation:navigation-compose:2.9.7")
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)

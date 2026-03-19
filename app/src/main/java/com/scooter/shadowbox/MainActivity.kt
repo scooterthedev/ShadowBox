@@ -9,6 +9,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
@@ -24,6 +25,7 @@ import com.scooter.shadowbox.UI.NavDrawer
 import com.scooter.shadowbox.UI.ui.theme.ShadowBoxTheme
 import com.scooter.shadowbox.auth.login.LoginActivity
 import kotlinx.coroutines.launch
+import com.scooter.shadowbox.UI.BottomBar
 
 class MainActivity : AppCompatActivity() {
 
@@ -38,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         authCheck()
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
+    @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3ExpressiveApi::class)
     private fun main() {
         setContent {
             ShadowBoxTheme {
@@ -52,6 +54,21 @@ class MainActivity : AppCompatActivity() {
                             R.id.nav_logout -> {
                                 auth.signOut()
                                 authCheck()
+                            }
+                            R.id.nav_settings -> {
+                                // TODO
+                            }
+                            R.id.nav_account -> {
+                                // TODO
+                            }
+                            R.id.nav_sftp -> {
+                                // TODO
+                            }
+                            R.id.nav_ftp -> {
+                                // TODO
+                            }
+                            R.id.nav_ssh -> {
+                                // TODO
                             }
                         }
                         scope.launch { drawerState.close() }
@@ -69,6 +86,9 @@ class MainActivity : AppCompatActivity() {
                                     }
                                 }
                             )
+                        },
+                        bottomBar = {
+                            BottomBar()
                         }
                     ) { innerPadding ->
 

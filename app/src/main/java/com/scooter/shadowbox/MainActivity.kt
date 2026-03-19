@@ -2,21 +2,30 @@ package com.scooter.shadowbox
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.MenuItem
-import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.drawerlayout.widget.DrawerLayout
-import com.scooter.shadowbox.databinding.ActivityMainBinding
-import com.google.firebase.*
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.rememberDrawerState
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Modifier
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
+import com.scooter.shadowbox.UI.NavDrawer
+import com.scooter.shadowbox.UI.ui.theme.ShadowBoxTheme
 import com.scooter.shadowbox.auth.login.LoginActivity
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
-    lateinit var drawerLayout: DrawerLayout
-    lateinit var actionBarDrawerToggle: ActionBarDrawerToggle
 
     // Firebase Auth
     private lateinit var auth: FirebaseAuth
@@ -24,29 +33,53 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-//        setSupportActionBar(binding.toolbar)
-
-        // Drawer Stuff
-        drawerLayout = binding.drawerLayout
-        actionBarDrawerToggle = ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close)
-
-        drawerLayout.addDrawerListener(actionBarDrawerToggle)
-        actionBarDrawerToggle.syncState()
-
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         auth = Firebase.auth
 
         authCheck()
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
-            true
-        } else super.onOptionsItemSelected(item)
+    @OptIn(ExperimentalMaterial3Api::class)
+    private fun main() {
+        setContent {
+            ShadowBoxTheme {
+                val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+                val scope = rememberCoroutineScope()
+
+                NavDrawer(
+                    drawerState = drawerState,
+                    onItemSelected = { itemId ->
+                        when (itemId) {
+                            R.id.nav_logout -> {
+                                auth.signOut()
+                                authCheck()
+                            }
+                        }
+                        scope.launch { drawerState.close() }
+                    }
+                ) {
+                    Scaffold(
+                        topBar = {
+                            TopAppBar(
+                                title = { Text("ShadowBox") },
+                                navigationIcon = {
+                                    IconButton(onClick = {
+                                        scope.launch { drawerState.open() }
+                                    }) {
+                                        Icon(Icons.Default.Menu, contentDescription = "Menu")
+                                    }
+                                }
+                            )
+                        }
+                    ) { innerPadding ->
+
+                        Text(
+                            text = "Main Content Area",
+                            modifier = Modifier.padding(innerPadding)
+                        )
+                    }
+                }
+            }
+        }
     }
 
     private fun authCheck() {
@@ -58,9 +91,5 @@ class MainActivity : AppCompatActivity() {
             startActivity(intLogin)
             finish()
         }
-    }
-
-    private fun main() {
-        null
     }
 }

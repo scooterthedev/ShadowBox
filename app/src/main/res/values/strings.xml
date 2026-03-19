@@ -22,4 +22,5 @@
     <string name="welcome_to_shadowbox">Welcome To ShadowBox</string>
     <string name="nav_open">Open</string>
     <string name="nav_close">Close</string>
+    <string name="title_activity_nav_drawer">NavDrawer</string>
 </resources>

@@ -12,6 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShadowBox">
         <activity
+            android:name=".UI.NavDrawer"
+            android:exported="false"
+            android:label="@string/title_activity_nav_drawer"
+            android:theme="@style/Theme.ShadowBox" />
+        <activity
             android:name=".auth.login.LoginActivity"
             android:exported="false"
             android:label="@string/title_activity_login" />
@@ -30,7 +35,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false"
-            android:theme="@style/Theme.ShadowBox"></activity>
+            android:theme="@style/Theme.ShadowBox" />
     </application>
 
 </manifest>

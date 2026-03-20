@@ -1,10 +1,9 @@
-package com.scooter.shadowbox.UI
+package com.scooter.shadowbox.UI.jetpack
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.paddingFrom
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ModalDrawerSheet
@@ -105,7 +104,6 @@ fun NavDrawerClosedPreview() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     NavDrawer(drawerState = drawerState) {
         Column(modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)) {
-            Text(text = "Main Content Area")
         }
     }
 }

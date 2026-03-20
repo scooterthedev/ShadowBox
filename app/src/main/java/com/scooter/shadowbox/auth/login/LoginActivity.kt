@@ -8,7 +8,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.OAuthProvider
 import com.google.firebase.auth.auth
-import com.scooter.shadowbox.MainActivity
+import com.scooter.shadowbox.UI.home.MainActivity
 import com.scooter.shadowbox.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {

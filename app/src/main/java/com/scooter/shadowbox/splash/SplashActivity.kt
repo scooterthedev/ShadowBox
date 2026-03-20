@@ -12,7 +12,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.widget.LinearLayout
 import android.widget.TextView
-import com.scooter.shadowbox.MainActivity
+import com.scooter.shadowbox.UI.home.MainActivity
 import com.scooter.shadowbox.databinding.ActivitySplashBinding
 import com.scooter.shadowbox.R
 import kotlin.time.Duration

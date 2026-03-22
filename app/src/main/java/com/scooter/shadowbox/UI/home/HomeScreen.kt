@@ -1,6 +1,5 @@
 package com.scooter.shadowbox.UI.home
 
-import android.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -53,6 +52,10 @@ fun HomeScreen(
     NavDrawer(
         drawerState = drawerState,
         onItemSelected = { itemId ->
+            when (itemId) {
+                com.scooter.shadowbox.R.id.nav_logout -> onLogout()
+                com.scooter.shadowbox.R.id.nav_settings -> onSettings()
+            }
             scope.launch { drawerState.close() }
         }
     ) {
@@ -74,11 +77,11 @@ fun HomeScreen(
             }
         ) { innerPadding ->
             Column(modifier = Modifier.padding(innerPadding).padding(16.dp)) {
-                connections.forEach { connection ->
+                connections.value.forEach { connection ->
                     ConnectionItem(
-                        connection = connectionm
+                        connection = connection,
                         onEdit = { onEditConnection(connection.id) }
-                    ) { }
+                    )
                 }
             }
         }

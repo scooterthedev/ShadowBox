@@ -40,37 +40,37 @@ fun NavDrawer(
                     fontSize = 15.sp
                 )
                 NavigationDrawerItem(
-                    label = { Text("SSH", modifier = Modifier.padding(top = 30.dp)) },
+                    label = { Text("SSH", modifier = Modifier.padding(top = 10.dp)) },
                     selected = false,
                     onClick = { onItemSelected(R.id.nav_ssh) },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
                 NavigationDrawerItem(
-                    label = { Text("FTP", modifier = Modifier.padding(top = 30.dp)) },
+                    label = { Text("FTP", modifier = Modifier.padding(top = 10.dp)) },
                     selected = false,
                     onClick = { onItemSelected(R.id.nav_ftp) },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
                 NavigationDrawerItem(
-                    label = { Text("SFTP", modifier = Modifier.padding(top = 30.dp)) },
+                    label = { Text("SFTP", modifier = Modifier.padding(top = 10.dp)) },
                     selected = false,
                     onClick = { onItemSelected(R.id.nav_sftp) },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
                 NavigationDrawerItem(
-                    label = { Text("My Account", modifier = Modifier.padding(top = 30.dp)) },
+                    label = { Text("My Account", modifier = Modifier.padding(top = 10.dp)) },
                     selected = false,
                     onClick = { onItemSelected(R.id.nav_account) },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
                 NavigationDrawerItem(
-                    label = { Text("Settings", modifier = Modifier.padding(top = 30.dp)) },
+                    label = { Text("Settings", modifier = Modifier.padding(top = 10.dp)) },
                     selected = false,
                     onClick = { onItemSelected(R.id.nav_settings) },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
                 )
                 NavigationDrawerItem(
-                    label = { Text("Logout", modifier = Modifier.padding(top = 30.dp)) },
+                    label = { Text("Logout", modifier = Modifier.padding(top = 10.dp)) },
                     selected = false,
                     onClick = { onItemSelected(R.id.nav_logout) },
                     modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)

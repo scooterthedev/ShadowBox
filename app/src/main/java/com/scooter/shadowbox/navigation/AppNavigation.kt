@@ -22,7 +22,11 @@ sealed class Screen(val route: String) {
 }
 
 @Composable
-fun AppNavigation(navController: NavHostController) {
+fun AppNavigation(
+    navController: NavHostController,
+    onLogout: () -> Unit = {},
+    onSettings: () -> Unit = {}
+) {
     NavHost(
         navController = navController,
         startDestination = Screen.Home.route
@@ -30,9 +34,9 @@ fun AppNavigation(navController: NavHostController) {
         composable(Screen.Home.route) {
             HomeScreen(
                 onAddConnection = { navController.navigate(Screen.Editor.passID()) },
-                onEditConnection = { id -> navController.navigate(Screen.Editor.passID())},
-                onLogout = {},
-                onSettings = {}
+                onEditConnection = { id -> navController.navigate(Screen.Editor.passID(id))},
+                onLogout = onLogout,
+                onSettings = onSettings
             )
         }
         composable(
